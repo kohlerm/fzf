@@ -31,7 +31,10 @@ fi
 ###########################################################
 
 # To redraw line after fzf closes (printf '\e[5n')
-bind '"\e[0n": redraw-current-line'
+if [ -t 1 ]
+then
+  bind '"\e[0n": redraw-current-line'
+fi
 
 __fzfcmd_complete() {
   [ -n "$TMUX_PANE" ] && [ "${FZF_TMUX:-0}" != 0 ] && [ ${LINES:-40} -gt 15 ] &&
